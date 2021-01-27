@@ -1,0 +1,14 @@
+DDL信息
+
+create table
+CREATE TABLE `user` (
+   `id` bigint(20) NOT NULL COMMENT '主键ID',
+   `name` varchar(30) DEFAULT NULL COMMENT '姓名',
+   `age` int(11) DEFAULT NULL COMMENT '年龄',
+   `email` varchar(50) DEFAULT NULL COMMENT '邮箱',
+   `create_time` datetime DEFAULT NULL,
+   `update_time` datetime DEFAULT NULL,
+   `version` int(11) DEFAULT NULL,
+   `deleted` tinyint(1) DEFAULT NULL,
+   PRIMARY KEY (`id`)
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8
