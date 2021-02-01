@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
+import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -48,7 +49,7 @@ public class MybatisPlusConfig
     /**
      * SQL 执行性能分析插件
      * 开发环境使用，线上不推荐。 maxTime 指的是 sql 最大执行时长
-     *
+     * <p>
      * 三种环境
      * dev: 开发环境
      * test: 测试环境
@@ -62,5 +63,14 @@ public class MybatisPlusConfig
         performanceInterceptor.setMaxTime(500);//ms，超过此处设置的ms则sql不执行
         performanceInterceptor.setFormat(true);//SQL是否格式化，默认false。
         return performanceInterceptor;
+    }
+
+    @Bean
+    public MapperScannerConfigurer mapperScannerConfigurer()
+    {
+        MapperScannerConfigurer scannerConfigurer = new MapperScannerConfigurer();
+        //可以通过环境变量获取你的mapper路径,这样mapper扫描可以通过配置文件配置了
+        scannerConfigurer.setBasePackage("com.yourpackage.*.mapper");
+        return scannerConfigurer;
     }
 }

@@ -40,6 +40,18 @@ public class MybatisPlusApplicationTests
 
     }
 
+    //查询所有User
+    @Test
+    public void queryAllUser()
+    {
+        //UserMapper 中的 selectList() 方法的参数为 MP 内置的条件封装器 Wrapper
+        //所以不填写就是无任何条件
+        List<User> users = userMapper.queryAllUser();
+        System.out.println("users = " + users);
+
+    }
+
+
     //添加User id默认雪花算法生成
     @Test
     public void addUser()
